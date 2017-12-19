@@ -1,14 +1,14 @@
 #include "graph.h"
 
-Graph::Graph(const int V, const int E)
+Graph::Graph(const int v, const int e)
 {
-	this->V = V;
-	this->E = E;
-	this->adjList.reserve(this->V);
+	V = v;
+	E = e;
+	adjList.reserve(this->V);
 
 	std::cout<< "Enter the pair of vertices forming an edge." << std::endl;
 
-	for(int i=0; i<this->V; i++)
+	for(int i=0; i<E; i++)
 	{
 		int u, v;
 		std::cin>> u >> v; 
@@ -16,9 +16,19 @@ Graph::Graph(const int V, const int E)
 	}
 }
 
-void Graph::addEdge(const int u, const int v, std::vector<std::vector<int>> &adjList)
+void Graph::addEdge(int u, int v, std::vector<std::vector<int>> &adjList)
 {
 	//for undirected graphs
 	adjList[u].push_back(v);
 	adjList[v].push_back(u);
+}
+
+int Graph::getNumVertices()
+{
+	return V;
+}
+
+int Graph::getNumEdges()
+{
+	return E;
 }

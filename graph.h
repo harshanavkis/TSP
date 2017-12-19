@@ -3,12 +3,16 @@
 #define GRAPH_H
 
 #include <vector>
+#include <iostream>
 
-class GRAPH
+
+class Graph
 {
 public:
-	GRAPH(const int V, const int E);
-	~GRAPH(){}
+	Graph(const int V, const int E);
+	int getNumVertices();
+	int getNumEdges();
+	~Graph();
 
 private:
 	int V, E;
