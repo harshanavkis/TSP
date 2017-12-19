@@ -12,9 +12,10 @@ int main(int argc, char const *argv[])
 {
 	int v, e; //number of vertices and edges
 	std::cin >> v >> e;
-	Graph* G = new Graph(v, e);
 	int source;
 	std::cout<< "Enter the source vertex" << std::endl;
+	std::cin >> source;
+	Graph* G = new Graph(v, e);
 
 	//assuming all edge lengths are positive
 	int bestLen = -1;
@@ -34,14 +35,19 @@ int main(int argc, char const *argv[])
 	// }
 
 	bestLen = pathLength(path, v, source, G);
+	std::cout << "Current Best Length: "<< bestLen <<";" << "Path is:" ;
+	printPath(path , v) ;
+	std::cout<< source << std::endl;
 
 	while(nextLexical(path, v))
 	{
 		if(bestLen > pathLength(path, v, source, G))
+		{
 			bestLen = pathLength(path, v, source, G);
-		std::cout << "Current Best Length: "<< bestLen <<";" << "Path is:" ;
-		printPath(path , v) ;
-		std::cout<<" " << source << std::endl;
+			std::cout << "Current Best Length: "<< bestLen <<";" << "Path is:" ;
+			printPath(path , v) ;
+			std::cout<< source << std::endl;
+		}
 	}
 	return 0;
 }
@@ -104,3 +110,12 @@ void printPath(std::vector<int> path, int len)
 		std::cout<< path[i] << "->";
 	}
 }
+
+/*
+0 1 10                                                                                                                               
+0 2 15                                                                                                                               
+0 3 20                                                                                                                               
+1 2 35                                                                                                                               
+1 3 25                                                                                                                               
+2 3 30 
+*/
