@@ -33,6 +33,7 @@ public:
 	Graph(const int V, const int E);
 	int getNumVertices();
 	int getNumEdges();
+	int getEdgeLength(int u, int v);
 	~Graph();
 
 private:

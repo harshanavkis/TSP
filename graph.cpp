@@ -34,3 +34,15 @@ int Graph::getNumEdges()
 {
 	return E;
 }
+
+int Graph::getEdgeLength(int u, int v)
+{
+	//return length of edge from u to v
+	std::vector<Node> v = adjList[u];
+	std::vector<Node>::iterator it;
+	for(it=v.begin(); it!=v.end(); it++)
+	{
+		if(it->vertex == v)
+			return it->length;
+	}
+}

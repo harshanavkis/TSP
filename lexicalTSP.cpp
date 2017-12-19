@@ -1,8 +1,12 @@
 #include "graph.h"
+#include <algorithm>
 
-bool nextLexical(int &currentOrder, int len);
-void reverse(int &vertices, int startIndex, int endIndex);
-int pathLength(int* path, int len)
+bool nextLexical(std::vector<int> &currentOrder, int len);
+void reverse(int &vertices, int startIndex);
+int pathLength(std::vector<int>* path, int len, Graph* G);
+void swap(std::vector<int> &currentOrder, int startIndex, int endIndex);
+void printPath(std::vector<int>* path, int len);
+
 
 int main(int argc, char const *argv[])
 {
@@ -28,19 +32,65 @@ int main(int argc, char const *argv[])
 		lexOrder[i] = path[i];
 	}
 
-	bestLen = pathLength(path, v+1);
+	bestLen = pathLength(path, v, source, Graph* G);
 
 	while(nextLexical(path, v))
 	{
-		if(bestLen > pathLength(path))
-			bestLen = pathLength(path);
-		std::cout << "Current Best Length: "<< bestLen <<";" << "Path is:" <<printPath(path , v) <<" " << source << std::endl;
+		if(bestLen > pathLength(path, v, source, Graph* G))
+			bestLen = pathLength(path, v, source, Graph* G);
+		std::cout << "Current Best Length: "<< bestLen <<";" << "Path is:" ;
+		printPath(path , v) ;
+		std::cout<<" " << source << std::endl;
 	}
 	return 0;
 }
 
 
-bool nextLexical(int &currentOrder)
+bool nextLexical(std::vector<int> &currentOrder, int len)
 {
-	
+	//misof's algorithm
+	int x=-1, y;
+	int Px, Py;
+	for(int i=1; i<len-1; i++)
+	{
+		if(currentOrder[i] < currentOrder[i+1])
+		{
+			x = i;
+			Px = currentOrder[i];
+		}
+	}
+	if(x==-1)
+		return false;
+	for(int i=1; i<len; i++)
+	{
+		if(currentOrder[i] > Px)
+			y = i;
+			Py = currentOrder[i];
+	}
+	swap(currentOrder, x, y);
+	reverse(currentOrder, x+1);
+	return true;
+}
+
+void swap(std::vector<int> &currentOrder, int startIndex, int endIndex)
+{
+	int temp = currentOrder[startIndex];
+	currentOrder[startIndex] = currentOrder[endIndex];
+	currentOrder[endIndex] = temp; 
+}
+
+void reverse(std::vector<int> &currentOrder, int startIndex)
+{
+	std::vector<int>::iterator s = currentOrder.begin() + startIndex;
+	std::reverse(s, currentOrder.end());
+}
+
+int pathLength(std::vector<int> &path, int len, Graph* G)
+{
+	int len = 0;
+	for(int i=0; i<len-1; i++)
+	{
+		len+=G.getEdgeLength(path[i], path[i+1]);
+	}
+	return len;
 }
