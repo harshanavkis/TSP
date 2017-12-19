@@ -6,21 +6,23 @@ Graph::Graph(const int v, const int e)
 	E = e;
 	adjList.reserve(this->V);
 
-	std::cout<< "Enter the pair of vertices forming an edge." << std::endl;
+	std::cout<< "Enter the pair of vertices forming an edge and the length of the edge" << std::endl;
 
 	for(int i=0; i<E; i++)
 	{
-		int u, v;
-		std::cin>> u >> v; 
-		addEdge(u, v, adjList);
+		int u, v, len;
+		std::cin>> u >> v >> len;
+		addEdge(u, v, len, adjList);
 	}
 }
 
-void Graph::addEdge(int u, int v, std::vector<std::vector<int>> &adjList)
+void Graph::addEdge(int u, int v,int len, std::vector<std::vector<Node>> &adjList)
 {
 	//for undirected graphs
-	adjList[u].push_back(v);
-	adjList[v].push_back(u);
+	Node* a = new Node(v,len);
+	Node* b = new Node(u,len)
+	adjList[u].push_back(a);
+	adjList[v].push_back(b);
 }
 
 int Graph::getNumVertices()

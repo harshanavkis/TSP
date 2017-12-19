@@ -6,6 +6,27 @@
 #include <iostream>
 
 
+class Node
+{
+public:
+	Node(const int v, const int len)
+	{
+		this.vertex = v;
+		this.length = len;
+	}
+	int getVertex()
+	{
+		return vertex;
+	}
+	int getLength()
+	{
+		return length;
+	}
+private:
+	int vertex;
+	int length;
+};
+
 class Graph
 {
 public:
@@ -16,8 +37,8 @@ public:
 
 private:
 	int V, E;
-	std::vector<std::vector<int>> adjList;
-	void addEdge(int u, int v, std::vector<std::vector<int>> &adjList);
+	std::vector<std::vector<Node>> adjList;
+	void addEdge(int u, int v, int len, std::vector<std::vector<Node>> &adjList);
 	
 };
 
