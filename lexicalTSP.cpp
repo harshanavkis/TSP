@@ -2,15 +2,16 @@
 #include <algorithm>
 
 bool nextLexical(std::vector<int> &currentOrder, int len);
-void reverse(int &vertices, int startIndex);
-int pathLength(std::vector<int>* path, int len, Graph* G);
+void reverse(std::vector<int> &vertices, int startIndex);
+int pathLength(std::vector<int> path, int len, int source, Graph* G);
 void swap(std::vector<int> &currentOrder, int startIndex, int endIndex);
-void printPath(std::vector<int>* path, int len);
+void printPath(std::vector<int> path, int len);
 
 
 int main(int argc, char const *argv[])
 {
 	int v, e; //number of vertices and edges
+	std::cin >> v >> e;
 	Graph* G = new Graph(v, e);
 	int source;
 	std::cout<< "Enter the source vertex" << std::endl;
@@ -25,19 +26,19 @@ int main(int argc, char const *argv[])
 			continue;
 		path.push_back(i); //assuming initial path is just the path of the vertices
 	}
-	int lexOrder[v];
-	lexOrder[0] = source; //assuming initial path order is lexicographical order
-	for(int i=1; i<v; i++)
-	{
-		lexOrder[i] = path[i];
-	}
+	// int lexOrder[v];
+	// lexOrder[0] = source; //assuming initial path order is lexicographical order
+	// for(int i=1; i<v; i++)
+	// {
+	// 	lexOrder[i] = path[i];
+	// }
 
-	bestLen = pathLength(path, v, source, Graph* G);
+	bestLen = pathLength(path, v, source, G);
 
 	while(nextLexical(path, v))
 	{
-		if(bestLen > pathLength(path, v, source, Graph* G))
-			bestLen = pathLength(path, v, source, Graph* G);
+		if(bestLen > pathLength(path, v, source, G))
+			bestLen = pathLength(path, v, source, G);
 		std::cout << "Current Best Length: "<< bestLen <<";" << "Path is:" ;
 		printPath(path , v) ;
 		std::cout<<" " << source << std::endl;
@@ -85,12 +86,21 @@ void reverse(std::vector<int> &currentOrder, int startIndex)
 	std::reverse(s, currentOrder.end());
 }
 
-int pathLength(std::vector<int> &path, int len, Graph* G)
+int pathLength(std::vector<int> path, int len, int source, Graph* G)
 {
-	int len = 0;
+	int size = 0;
 	for(int i=0; i<len-1; i++)
 	{
-		len+=G.getEdgeLength(path[i], path[i+1]);
+		size+=G->getEdgeLength(path[i], path[i+1]);
 	}
-	return len;
+	size+=G->getEdgeLength(path[len-1], source);
+	return size;
+}
+
+void printPath(std::vector<int> path, int len)
+{
+	for(int i=0; i<len; i++)
+	{
+		std::cout<< path[i] << "->";
+	}
 }

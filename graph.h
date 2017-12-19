@@ -6,25 +6,30 @@
 #include <iostream>
 
 
-class Node
+// class Node
+// {
+// public:
+// 	Node(const int v, const int len)
+// 	{
+// 		vertex = v;
+// 		length = len;
+// 	}
+// 	int getVertex()
+// 	{
+// 		return vertex;
+// 	}
+// 	int getLength()
+// 	{
+// 		return length;
+// 	}
+// private:
+// 	int vertex;
+// 	int length;
+// };
+
+struct Node
 {
-public:
-	Node(const int v, const int len)
-	{
-		this.vertex = v;
-		this.length = len;
-	}
-	int getVertex()
-	{
-		return vertex;
-	}
-	int getLength()
-	{
-		return length;
-	}
-private:
-	int vertex;
-	int length;
+	int vertex, length;
 };
 
 class Graph

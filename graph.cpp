@@ -19,8 +19,12 @@ Graph::Graph(const int v, const int e)
 void Graph::addEdge(int u, int v,int len, std::vector<std::vector<Node>> &adjList)
 {
 	//for undirected graphs
-	Node* a = new Node(v,len);
-	Node* b = new Node(u,len)
+	Node a;
+	a.vertex = u;
+	a.length = len;
+	Node b;
+	b.vertex = v;
+	b.length = len;
 	adjList[u].push_back(a);
 	adjList[v].push_back(b);
 }
@@ -38,9 +42,9 @@ int Graph::getNumEdges()
 int Graph::getEdgeLength(int u, int v)
 {
 	//return length of edge from u to v
-	std::vector<Node> v = adjList[u];
+	std::vector<Node> vec = adjList[u];
 	std::vector<Node>::iterator it;
-	for(it=v.begin(); it!=v.end(); it++)
+	for(it=vec.begin(); it!=vec.end(); it++)
 	{
 		if(it->vertex == v)
 			return it->length;
