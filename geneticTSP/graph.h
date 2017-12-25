@@ -4,6 +4,8 @@
 
 #include <vector>
 #include <iostream>
+#include <string>
+
 
 
 // class Node
@@ -35,11 +37,12 @@ struct Node
 class Graph
 {
 public:
-	Graph(const int V, const int E);
+	Graph(){}
+	Graph(const std::string& fileName);
 	int getNumVertices();
 	int getNumEdges();
 	int getEdgeLength(int u, int v);
-	~Graph();
+	~Graph(){}
 
 private:
 	int V, E;

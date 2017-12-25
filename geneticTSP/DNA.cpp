@@ -16,8 +16,18 @@ int rangeRandomAlg(int min, int max)
 	return min + x % n;
 }
 
+void shuffle(int* genes, int length)
+{
+	for(int i=0; i<length; i++)
+	{
+		int index = rangeRandomAlg(0, length);
+		int temp = genes[index];
+		genes[index] = genes[i];
+		genes[i] = temp;
+	}
+}
 
-DNA::DNA(int length, auto rng)
+DNA::DNA(int length)
 {
 	this->genes = new int[length];
 	this->geneLength = length;
@@ -25,14 +35,9 @@ DNA::DNA(int length, auto rng)
 	{
 		genes[i] = i;
 	}
-	std::shuffle(this->genes, this->genes + length, rng);
+	shuffle(this->genes, length);
 }
 
-DNA::DNA(int length)
-{
-	this->genes = new int[length];
-	this-<geneLength = length;
-}
 
 int DNA::length()
 {
@@ -79,7 +84,7 @@ DNA DNA::crossover(DNA partner)
 	DNA child = DNA(partner.length());
 	int midpoint = rangeRandomAlg(0, partner.length());
 
-	for(int i=0; i<chromoLength; i++)
+	for(int i=0; i<geneLength; i++)
 	{
 		if(i > midpoint) child.genes[i] = this->genes[i];
 		else child.genes[i] = partner.genes[i];

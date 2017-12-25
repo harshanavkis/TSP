@@ -12,17 +12,17 @@ float calcGraphWeight(Graph G, DNA member)
 	return weight;
 }
 
-Population::Population(Graph G, int popSize, auto rng)
+Population::Population(Graph G, int popSize)
 {
 	this->generation = new DNA[popSize];
 	this->G = G;
 	for(int i=0; i<popSize; i++)
 	{
-		generation[i] = DNA(G.getNumVertices(), rng);
+		generation[i] = DNA(G.getNumVertices());
 	}
 }
 
-Population::Population(Graph G, int popSize)
+Population::Population(int popSize, Graph G)
 {
 	this->generation = new DNA[popSize];
 	this->G = G;
@@ -30,13 +30,13 @@ Population::Population(Graph G, int popSize)
 
 int Population::maxFitMember()
 {
-	float maxFitness = thihs->generation[0].getFitness();
+	float maxFitness = this->generation[0].getFitness();
 	int index = 0;
 	for(int i=0; i<this->popSize; i++)
 	{
-		if(maxFitness < this->generation(i).getFitness())
+		if(maxFitness < this->generation[i].getFitness())
 		{
-			maxFitness = this->generation(i).getFitness();
+			maxFitness = this->generation[i].getFitness();
 			index = i;
 		}
 	}
@@ -46,11 +46,11 @@ int Population::maxFitMember()
 void Population::printMaxFit()
 {
 	int index = maxFitMember();
-	DNA* m = this->generation[index];
+	DNA m = this->generation[index];
 	int length = this->generation[index].length();
 	for(int i=0; i<length; i++)
 	{
-		std::cout << m[i] << "-->";
+		std::cout << m.genes[i] << "-->";
 	}
 	std::cout<< std::endl;
 }
@@ -81,7 +81,7 @@ float Population::calcFitness()
 	return totalFitness;
 }
 
-void getProbVals(float totalFitness)
+void Population::getProbVals(float totalFitness)
 {
 	for(int i=0; i<this->popSize; i++)
 	{
@@ -96,7 +96,7 @@ void Population::addChild(DNA child, int index)
 
 Population Population::nextGeneration()
 {
-	Population nextGen = Population(this->G, this->popSize);
+	Population nextGen = Population(this->popSize, this->G);
 	float totalFitness = this->calcFitness();
 	this->getProbVals(totalFitness);
 	for(int i=0; i<this->popSize; i++)

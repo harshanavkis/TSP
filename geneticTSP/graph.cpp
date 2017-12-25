@@ -1,9 +1,7 @@
 #include "graph.h"
 #include <fstream>
-#include <string>
-#include <vector>
 
-Graph::Graph(const std::string fileName)
+Graph::Graph(const std::string& fileName)
 {
 	int x;
 	std::ifstream inFile;
@@ -17,10 +15,11 @@ Graph::Graph(const std::string fileName)
 	this->E = c[1];
 	adjList.reserve(this->V);
 
-	for(int i=2; i<c.size(); i+=2)
+	for(int i=2; i<c.size(); i+=3)
 	{
 		int u = c[i];
 		int v = c[i+1];
+		int len = c[i+2];
 		addEdge(u, v, len, adjList);
 	}
 }

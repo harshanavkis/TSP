@@ -8,14 +8,16 @@
 class Population
 {
 public:
-	Population(Graph G, int popSize, auto rng);
-	Population(Graph G, int popSize)
-	~Population();
+	Population();
+	Population(Graph G, int popSize);
+	Population(int popSize, Graph G);
+	~Population(){}
 	int maxFitMember();	
 	DNA pickParent();
 	void printMaxFit();
 	float calcFitness();
 	Population nextGeneration();
+	void getProbVals(float totalFitness);
 	void addChild(DNA child, int index);
 
 

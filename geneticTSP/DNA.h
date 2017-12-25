@@ -8,7 +8,7 @@
 class DNA
 {
 public:
-	DNA(int length, auto rng);
+	DNA(){}
 	DNA(int length);
 	int length();
 	void setProb(float prob);
@@ -18,9 +18,9 @@ public:
 	int getVertex(int index);
 	void mutate(float mutationRate);
 	DNA crossover(DNA partner);
-	~DNA();
-private:
 	int* genes;
+	~DNA(){}
+private:
 	int geneLength;
 	float fitness;
 	float prob;

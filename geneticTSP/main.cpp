@@ -2,8 +2,7 @@
 
 int main(int argc, char const *argv[])
 {
-	auto rng = std::default_random_engine {}; //to generate random shuffle
-	const std::string = "testGraph.txt";
+	const std::string fileName = "testGraph.txt";
 	Graph G = Graph(fileName);
 
 	int popSize;
@@ -13,7 +12,7 @@ int main(int argc, char const *argv[])
 	std::cout << "Enter the mutation rate:" << std::endl;
 	std::cin >> mutationRate;
 
-	Population population = Population(G, popSize, rng);
+	Population population = Population(G, popSize);
 
 	while(true)
 	{
