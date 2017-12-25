@@ -107,4 +107,5 @@ Population Population::nextGeneration()
 		child.mutate(0.01);
 		nextGen .addChild(child, i);
 	}
+	return nextGen;
 }

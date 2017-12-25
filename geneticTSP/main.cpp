@@ -15,6 +15,12 @@ int main(int argc, char const *argv[])
 
 	Population population = Population(G, popSize, rng);
 
+	while(true)
+	{
+		population = population.nextGeneration();
+		population.printMaxFit();
+	}
+
 
 	return 0;
 }
