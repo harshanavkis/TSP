@@ -1,3 +1,8 @@
 # TSP
-My implementation of the Travelling Salesperson Problem using three methods.
-Currently I have implemented only using a lexicographical method, more will follow.
+
+My implementation of the Travelling Salesperson Problem using various methods.
+
+## Approaches Used
+
+* Lexicographical ordering of the vertices( Fancy name for brute force)
+* Genetic Algorithm
