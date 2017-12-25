@@ -1,17 +1,26 @@
 #include "graph.h"
+#include <fstream>
+#include <string>
+#include <vector>
 
-Graph::Graph(const int v, const int e)
+Graph::Graph(const std::string fileName)
 {
-	V = v;
-	E = e;
+	int x;
+	std::ifstream inFile;
+	inFile.open(fileName);
+	std::vector<int> c;
+	while(inFile >> x)
+	{
+		c.push_back(x);
+	}
+	this->V = c[0];
+	this->E = c[1];
 	adjList.reserve(this->V);
 
-	std::cout<< "Enter the pair of vertices forming an edge and the length of the edge" << std::endl;
-
-	for(int i=0; i<E; i++)
+	for(int i=2; i<c.size(); i+=2)
 	{
-		int u, v, len;
-		std::cin>> u >> v >> len;
+		int u = c[i];
+		int v = c[i+1];
 		addEdge(u, v, len, adjList);
 	}
 }

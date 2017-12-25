@@ -14,6 +14,9 @@ public:
 	int maxFitMember();	
 	DNA pickParent();
 	void printMaxFit();
+	float calcFitness();
+	Population nextGeneration();
+	void addChild(DNA child, int index);
 
 
 private:

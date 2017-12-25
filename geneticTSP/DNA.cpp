@@ -86,3 +86,8 @@ DNA DNA::crossover(DNA partner)
 	}
 	return child;
 }
+
+int DNA::getVertex(int index)
+{
+	return this->genes[index];
+}

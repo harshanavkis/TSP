@@ -15,6 +15,7 @@ public:
 	void setFitness(float fitness);
 	float getProb();
 	float getFitness();
+	int getVertex(int index);
 	void mutate(float mutationRate);
 	DNA crossover(DNA partner);
 	~DNA();
