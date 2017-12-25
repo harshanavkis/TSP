@@ -4,7 +4,6 @@
 #include <random>
 #include <cmath>
 #include <algorithm>
-#include "graph.h"
 
 class DNA
 {
