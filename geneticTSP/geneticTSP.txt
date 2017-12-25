@@ -1,0 +1,16 @@
+-create a population of orders
+-assign a fitness score to each of them
+-fitness score is the length of the path of the population instance
+-generate new orders based on the orders that did better
+
+-for better shit fitness is better if the value assigned to it is more and less if value assigned is less
+	-less dist = more fitness and vice versa
+	-use an inverse func
+-then normalize all the fitness values to be bw 0 and 1
+
+-GA:
+	-calc fitness
+	-normalize fitness
+	-make the next generation
+	-loop thru the population and select more of the existing population with higher fitness score and less with lower fitness score=pool selection
+	-add mutations i.e mutate order
